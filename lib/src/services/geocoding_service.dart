@@ -1,13 +1,21 @@
-import 'package:weather_app/src/models/coordinates.dart';
+import 'dart:convert';
+
+import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
+import 'package:weather_app/src/entities/coordinates.dart';
 
 class GeocodingService {
-  Future<Coordinates> getCoordinates(String city) async {
-    await http.get(Uri.https(
+  Future<List<Coordinates>> getCoordinates(String city) async {
+    Response response = await http.get(Uri.https(
       'geocoding-api.open-meteo.com',
       '/v1/search',
       <String, dynamic>{'name': city},
     ));
-    return Coordinates.fromJson({});
+    try {
+      var results = jsonDecode(response.body)['results'];
+      return results.map<Coordinates>((e) => Coordinates.fromJson(e)).toList();
+    } catch (e) {
+      return <Coordinates>[];
+    }
   }
 }

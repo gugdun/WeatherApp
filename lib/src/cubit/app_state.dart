@@ -6,7 +6,7 @@ abstract class AppState {}
 class AppInitial extends AppState {}
 
 class AppDefault extends AppState {
-  final List<ForecastPage> pages;
+  final List<Coordinates> pages;
 
-  AppDefault({this.pages = const <ForecastPage>[]});
+  AppDefault({this.pages = const <Coordinates>[]});
 }

@@ -1,4 +1,4 @@
-import 'package:weather_app/src/models/current_weather.dart';
+import 'package:weather_app/src/entities/current_weather.dart';
 
 class Forecast {
   final String timezone;
