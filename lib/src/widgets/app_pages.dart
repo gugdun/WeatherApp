@@ -7,6 +7,16 @@ import 'package:weather_app/src/screens/weather_screen.dart';
 class AppPages extends StatelessWidget {
   const AppPages({Key? key}) : super(key: key);
 
+  List<WeatherScreen> screens(AppState state) {
+    if (state is AppDefault) {
+      return state.pages
+          .map<WeatherScreen>((e) => WeatherScreen(city: e))
+          .toList();
+    } else {
+      return <WeatherScreen>[];
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppCubit, AppState>(
@@ -15,10 +25,7 @@ class AppPages extends StatelessWidget {
           controller: context.read<AppCubit>().pageController,
           children: <Widget>[
             const CitiesScreen(),
-            ...(state as AppDefault)
-                .pages
-                .map<WeatherScreen>((e) => WeatherScreen(city: e))
-                .toList(),
+            ...screens(state),
           ],
         );
       },

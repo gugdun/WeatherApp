@@ -7,13 +7,23 @@ part 'app_state.dart';
 class AppCubit extends Cubit<AppState> {
   AppCubit() : super(AppInitial());
 
-  Future<void> addPage(Coordinates page) async {
+  void addPage(Coordinates page) {
     if (state is AppDefault) {
       var newPages = (state as AppDefault).pages;
       newPages.add(page);
       emit(AppDefault(pages: newPages));
     } else {
       emit(AppDefault(pages: <Coordinates>[page]));
+    }
+  }
+
+  void removePage(Coordinates page) {
+    var newPages = (state as AppDefault).pages;
+    newPages.remove(page);
+    if (newPages.isEmpty) {
+      emit(AppInitial());
+    } else {
+      emit(AppDefault(pages: newPages));
     }
   }
 

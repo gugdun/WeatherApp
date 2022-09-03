@@ -1,10 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_app/src/cubit/app_cubit.dart';
+import 'package:weather_app/src/entities/coordinates.dart';
+import 'package:weather_app/src/widgets/location.dart';
 
 class CityItem extends StatelessWidget {
-  const CityItem({Key? key, required this.text}) : super(key: key);
+  const CityItem({Key? key, required this.city}) : super(key: key);
 
-  final String text;
+  final Coordinates city;
+
+  Widget deleteIcon() {
+    return BlocBuilder<AppCubit, AppState>(
+      builder: (context, state) {
+        return GestureDetector(
+          onTap: () => context.read<AppCubit>().removePage(city),
+          child: const Icon(Icons.delete_outline),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,9 +28,12 @@ class CityItem extends StatelessWidget {
         margin: const EdgeInsets.all(0),
         child: Padding(
           padding: const EdgeInsets.all(12),
-          child: Text(
-            text,
-            style: GoogleFonts.manrope(fontSize: 18),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Location(city: city),
+              deleteIcon(),
+            ],
           ),
         ),
       ),

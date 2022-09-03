@@ -15,7 +15,7 @@ class CitiesList extends StatelessWidget {
           itemCount: state is AppDefault ? state.pages.length : 0,
           itemBuilder: (context, index) {
             if (state is AppDefault) {
-              return CityItem(text: state.pages[index].city);
+              return CityItem(city: state.pages[index]);
             }
             return Container();
           },

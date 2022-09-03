@@ -19,9 +19,16 @@ class App extends StatelessWidget {
             create: (BuildContext context) {
               var app = AppCubit();
               app.addPage(Coordinates(
-                city: 'Grodno',
-                admin: 'Grodno',
+                city: 'Minsk',
+                admin: 'Minsk City',
                 country: 'Belarus',
+                latitude: 0,
+                longitude: 0,
+              ));
+              app.addPage(Coordinates(
+                city: 'New York',
+                admin: 'New York',
+                country: 'United States',
                 latitude: 0,
                 longitude: 0,
               ));
