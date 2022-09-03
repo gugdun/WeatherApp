@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/src/cubit/search_cubit.dart';
-import 'package:weather_app/src/widgets/cities_list.dart';
-import 'package:weather_app/src/widgets/search_field.dart';
-import 'package:weather_app/src/widgets/search_list.dart';
+import 'package:weather_app/src/widgets/cities/cities_list.dart';
+import 'package:weather_app/src/widgets/search/search_field.dart';
+import 'package:weather_app/src/widgets/search/search_list.dart';
 
 class CitiesScreen extends StatelessWidget {
   const CitiesScreen({Key? key}) : super(key: key);

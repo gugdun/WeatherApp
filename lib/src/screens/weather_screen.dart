@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/src/entities/coordinates.dart';
 
 class WeatherScreen extends StatelessWidget {
-  const WeatherScreen({Key? key}) : super(key: key);
+  final Coordinates city;
+
+  const WeatherScreen({Key? key, required this.city}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +12,7 @@ class WeatherScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Text('Weather'),
+            Text(city.city),
           ],
         ),
       ),

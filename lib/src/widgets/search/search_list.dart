@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/src/cubit/search_cubit.dart';
-import 'package:weather_app/src/widgets/search_item.dart';
+import 'package:weather_app/src/widgets/search/search_item.dart';
 
 class SearchList extends StatelessWidget {
   const SearchList({Key? key}) : super(key: key);

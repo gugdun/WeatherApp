@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/src/cubit/app_cubit.dart';
-import 'package:weather_app/src/widgets/city_item.dart';
+import 'package:weather_app/src/widgets/cities/city_item.dart';
 
 class CitiesList extends StatelessWidget {
   const CitiesList({Key? key}) : super(key: key);

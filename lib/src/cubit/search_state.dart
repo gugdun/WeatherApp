@@ -6,9 +6,15 @@ abstract class SearchState {}
 class SearchInitial extends SearchState {}
 
 class SearchQueried extends SearchState {
-  final int futures;
+  final String query;
 
-  SearchQueried({required this.futures});
+  SearchQueried({required this.query});
+}
+
+class SearchInProgress extends SearchState {
+  final Future<void> future;
+
+  SearchInProgress({required this.future});
 }
 
 class SearchDone extends SearchState {

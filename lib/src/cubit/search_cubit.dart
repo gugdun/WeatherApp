@@ -6,23 +6,31 @@ import 'package:weather_app/src/services/geocoding_service.dart';
 part 'search_state.dart';
 
 class SearchCubit extends Cubit<SearchState> {
+  final GeocodingService geocoding = GeocodingService();
+
   SearchCubit() : super(SearchInitial());
 
   Future<void> setQuery(String query) async {
-    int futures = state is SearchQueried ? (state as SearchQueried).futures : 0;
-    emit(SearchQueried(futures: futures + 1));
-    Future.microtask(() async {
-      var results = await GeocodingService().getCoordinates(query);
-      int futures = (state as SearchQueried).futures;
-      if (futures == 1) {
-        if (query == '') {
-          emit(SearchInitial());
-        } else {
-          emit(SearchDone(results: results));
-        }
-      } else {
-        emit(SearchQueried(futures: futures - 1));
-      }
-    });
+    if (state is SearchInProgress) {
+      await (state as SearchInProgress).future;
+    }
+
+    if (query == '') {
+      emit(SearchInitial());
+      return;
+    }
+
+    emit(SearchQueried(query: query));
+  }
+
+  Future<void> search() async {
+    if (state is SearchQueried) {
+      var stateQueried = state as SearchQueried;
+      var future = Future.microtask(() async {
+        var results = await geocoding.getCoordinates(stateQueried.query);
+        emit(SearchDone(results: results));
+      });
+      emit(SearchInProgress(future: future));
+    }
   }
 }

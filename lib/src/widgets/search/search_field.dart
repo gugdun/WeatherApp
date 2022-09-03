@@ -14,6 +14,7 @@ class SearchField extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: TextField(
             style: GoogleFonts.manrope(fontSize: 18),
+            textInputAction: TextInputAction.search,
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.all(12),
               hintStyle: GoogleFonts.manrope(fontSize: 18),
@@ -21,8 +22,8 @@ class SearchField extends StatelessWidget {
               border: const OutlineInputBorder(),
               suffixIcon: const Icon(Icons.search),
             ),
-            onChanged: (String value) =>
-                context.read<SearchCubit>().setQuery(value),
+            onChanged: (value) => context.read<SearchCubit>().setQuery(value),
+            onSubmitted: (_) => context.read<SearchCubit>().search(),
           ),
         );
       },
