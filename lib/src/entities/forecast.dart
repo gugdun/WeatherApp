@@ -15,7 +15,7 @@ class Forecast {
 
   factory Forecast.fromJson(Map<String, dynamic> json) {
     return Forecast(
-      timezone: json['time'],
+      timezone: json['timezone'],
       timezoneAbbreviation: json['timezone_abbreviation'],
       elevation: json['elevation'],
       currentWeather: CurrentWeather.fromJson(json['current_weather']),

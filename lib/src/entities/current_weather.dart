@@ -19,7 +19,7 @@ class CurrentWeather {
       windSpeed: json['windspeed'],
       windDirection: json['winddirection'],
       weatherCode: json['weathercode'],
-      time: json['time'],
+      time: DateTime.parse(json['time']),
     );
   }
 }

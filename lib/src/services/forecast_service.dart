@@ -11,8 +11,8 @@ class ForecastService {
       'api.open-meteo.com',
       '/v1/forecast',
       <String, dynamic>{
-        'latitude': coordinates.latitude,
-        'longitude': coordinates.longitude,
+        'latitude': '${coordinates.latitude}',
+        'longitude': '${coordinates.longitude}',
         'timezone': 'auto',
         'current_weather': 'true',
       },
