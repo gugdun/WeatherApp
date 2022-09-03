@@ -19,7 +19,7 @@ class AppCubit extends Cubit<AppState> {
 
   void removePage(Coordinates page) {
     var newPages = (state as AppDefault).pages;
-    newPages.remove(page);
+    newPages.remove(newPages.firstWhere((e) => e.compareTo(page) == 1));
     if (newPages.isEmpty) {
       emit(AppInitial());
     } else {
@@ -27,5 +27,5 @@ class AppCubit extends Cubit<AppState> {
     }
   }
 
-  final PageController pageController = PageController();
+  final PageController pageController = PageController(initialPage: 1);
 }

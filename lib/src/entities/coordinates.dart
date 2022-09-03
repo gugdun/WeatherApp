@@ -1,4 +1,4 @@
-class Coordinates {
+class Coordinates implements Comparable {
   final String city;
   final String admin;
   final String country;
@@ -21,5 +21,18 @@ class Coordinates {
       latitude: json['latitude'],
       longitude: json['longitude'],
     );
+  }
+
+  @override
+  int compareTo(other) {
+    if (city == other?.city &&
+        admin == other?.admin &&
+        country == other?.country &&
+        latitude == other?.latitude &&
+        longitude == other?.longitude) {
+      return 1;
+    } else {
+      return 0;
+    }
   }
 }

@@ -22,15 +22,15 @@ class App extends StatelessWidget {
                 city: 'Minsk',
                 admin: 'Minsk City',
                 country: 'Belarus',
-                latitude: 0,
-                longitude: 0,
+                latitude: 53.9,
+                longitude: 27.56667,
               ));
               app.addPage(Coordinates(
                 city: 'New York',
                 admin: 'New York',
                 country: 'United States',
-                latitude: 0,
-                longitude: 0,
+                latitude: 40.71427,
+                longitude: -74.00597,
               ));
               return app;
             },
