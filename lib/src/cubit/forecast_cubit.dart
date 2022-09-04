@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:uuid/uuid.dart';
 import 'package:weather_app/src/entities/city.dart';
 import 'package:weather_app/src/entities/forecast.dart';
 import 'package:weather_app/src/services/forecast_service.dart';
@@ -12,5 +16,23 @@ class ForecastCubit extends Cubit<ForecastState> {
 
   ForecastCubit({required this.city}) : super(ForecastInitial());
 
-  Future<Forecast> get forecast async => forecastService.currentWeather(city);
+  Future<void> refresh() async {
+    var prefs = await SharedPreferences.getInstance();
+    await prefs.remove('forecast_${city.city}');
+    var uuid = const Uuid();
+    emit(ForecastInitial(uuid: uuid.v1()));
+  }
+
+  Future<Forecast> get forecast async {
+    var prefs = await SharedPreferences.getInstance();
+    if (prefs.containsKey('forecast_${city.city}')) {
+      var json = prefs.getString('forecast_${city.city}');
+      if (json != null) {
+        return Forecast.fromJson(jsonDecode(json));
+      }
+    }
+    var forecast = await forecastService.currentWeather(city);
+    await prefs.setString('forecast_${city.city}', jsonEncode(forecast));
+    return forecast;
+  }
 }

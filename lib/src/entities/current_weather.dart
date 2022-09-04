@@ -22,4 +22,12 @@ class CurrentWeather {
       time: DateTime.parse(json['time']),
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'temperature': temperature,
+        'windspeed': windSpeed,
+        'winddirection': windDirection,
+        'weathercode': weatherCode,
+        'time': time.toIso8601String(),
+      };
 }

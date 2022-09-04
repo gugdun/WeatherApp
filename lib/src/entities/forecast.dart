@@ -21,4 +21,11 @@ class Forecast {
       currentWeather: CurrentWeather.fromJson(json['current_weather']),
     );
   }
+
+  Map<String, dynamic> toJson() => {
+        'timezone': timezone,
+        'timezone_abbreviation': timezoneAbbreviation,
+        'elevation': elevation,
+        'current_weather': currentWeather.toJson(),
+      };
 }

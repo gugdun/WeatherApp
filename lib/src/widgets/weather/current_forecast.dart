@@ -12,23 +12,20 @@ class CurrentForecast extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => ForecastCubit(city: city),
-      child: BlocBuilder<ForecastCubit, ForecastState>(
-        builder: (context, state) {
-          return FutureBuilder(
-            future: context.read<ForecastCubit>().forecast,
-            builder: (context, snapshot) {
-              if (!snapshot.hasData) {
-                return const Text('Loading...');
-              } else {
-                Forecast forecast = snapshot.data as Forecast;
-                return Weather(weather: forecast.currentWeather);
-              }
-            },
-          );
-        },
-      ),
+    return BlocBuilder<ForecastCubit, ForecastState>(
+      builder: (context, state) {
+        return FutureBuilder(
+          future: context.read<ForecastCubit>().forecast,
+          builder: (context, snapshot) {
+            if (!snapshot.hasData) {
+              return const Text('Loading...');
+            } else {
+              Forecast forecast = snapshot.data as Forecast;
+              return Weather(weather: forecast.currentWeather);
+            }
+          },
+        );
+      },
     );
   }
 }
