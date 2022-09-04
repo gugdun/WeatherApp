@@ -26,6 +26,4 @@ class AppCubit extends Cubit<AppState> {
       emit(AppDefault(cities: newCities));
     }
   }
-
-  final PageController pageController = PageController(initialPage: 1);
 }

@@ -4,7 +4,9 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:weather_app/src/cubit/app_cubit.dart';
 
 class PageIndicator extends StatelessWidget {
-  const PageIndicator({Key? key}) : super(key: key);
+  final PageController controller;
+
+  const PageIndicator({Key? key, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class PageIndicator extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.only(top: 8),
           child: SmoothPageIndicator(
-            controller: context.read<AppCubit>().pageController,
+            controller: controller,
             count: (state as AppDefault).cities.length + 1,
             effect: const ScrollingDotsEffect(
               maxVisibleDots: 5,
