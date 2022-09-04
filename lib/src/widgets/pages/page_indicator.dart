@@ -12,14 +12,14 @@ class PageIndicator extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AppCubit, AppState>(
       builder: (BuildContext context, AppState state) {
-        if (state is AppInitial) {
+        if ((state as AppLoaded).cities.isEmpty) {
           return Container();
         }
         return Padding(
           padding: const EdgeInsets.only(top: 8),
           child: SmoothPageIndicator(
             controller: controller,
-            count: (state as AppDefault).cities.length + 1,
+            count: state.cities.length + 1,
             effect: const ScrollingDotsEffect(
               maxVisibleDots: 5,
               radius: 8,

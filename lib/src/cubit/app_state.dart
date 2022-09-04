@@ -5,8 +5,8 @@ abstract class AppState {}
 
 class AppInitial extends AppState {}
 
-class AppDefault extends AppState {
+class AppLoaded extends AppState {
   final List<City> cities;
 
-  AppDefault({this.cities = const <City>[]});
+  AppLoaded({this.cities = const <City>[]});
 }

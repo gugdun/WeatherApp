@@ -23,6 +23,14 @@ class City implements Comparable {
     );
   }
 
+  Map<String, dynamic> toJson() => {
+        'name': city,
+        'admin1': admin,
+        'country': country,
+        'latitude': latitude,
+        'longitude': longitude,
+      };
+
   @override
   int compareTo(other) {
     if (city == other?.city &&

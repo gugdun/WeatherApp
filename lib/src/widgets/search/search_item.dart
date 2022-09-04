@@ -14,7 +14,7 @@ class SearchItem extends StatelessWidget {
   Widget button() {
     return BlocBuilder<AppCubit, AppState>(
       builder: (context, state) {
-        if (state is AppDefault) {
+        if (state is AppLoaded) {
           return state.cities.where((e) => e.compareTo(city) == 1).isNotEmpty
               ? DeleteButton(city: city)
               : AddButton(city: city);

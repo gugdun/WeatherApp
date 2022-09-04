@@ -25,13 +25,12 @@ class _AppPagesState extends State<AppPages> {
   }
 
   List<WeatherPage> weatherPages(AppState state) {
-    if (state is AppDefault) {
+    if (state is AppLoaded) {
       return state.cities
           .map<WeatherPage>((e) => WeatherPage(city: e))
           .toList();
-    } else {
-      return <WeatherPage>[];
     }
+    return <WeatherPage>[];
   }
 
   @override
@@ -44,12 +43,12 @@ class _AppPagesState extends State<AppPages> {
             Expanded(
               child: PageView.builder(
                 controller: _controller,
-                itemCount: (state is AppDefault) ? state.cities.length + 1 : 1,
+                itemCount: (state is AppLoaded) ? state.cities.length + 1 : 1,
                 itemBuilder: (context, index) {
                   if (index == 0) {
                     return const SearchPage();
                   }
-                  if (state is AppDefault &&
+                  if (state is AppLoaded &&
                       index - 1 >= 0 &&
                       index - 1 < state.cities.length) {
                     return WeatherPage(city: state.cities[index - 1]);

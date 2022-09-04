@@ -12,9 +12,9 @@ class CitiesList extends StatelessWidget {
       builder: (context, state) {
         return ListView.builder(
           shrinkWrap: true,
-          itemCount: state is AppDefault ? state.cities.length : 0,
+          itemCount: state is AppLoaded ? state.cities.length : 0,
           itemBuilder: (context, index) {
-            if (state is AppDefault) {
+            if (state is AppLoaded) {
               return CityItem(city: state.cities[index]);
             }
             return Container();
