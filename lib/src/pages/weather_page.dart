@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:weather_app/src/cubit/forecast_cubit.dart';
-import 'package:weather_app/src/entities/coordinates.dart';
+import 'package:weather_app/src/entities/city.dart';
 import 'package:weather_app/src/entities/forecast.dart';
 
-class WeatherScreen extends StatelessWidget {
-  final Coordinates city;
+class WeatherPage extends StatelessWidget {
+  final City city;
 
-  const WeatherScreen({Key? key, required this.city}) : super(key: key);
+  const WeatherPage({Key? key, required this.city}) : super(key: key);
 
-  Widget forecast() {
+  Widget currentForecast() {
     return BlocProvider(
       create: (context) => ForecastCubit(city: city),
       child: BlocBuilder<ForecastCubit, ForecastState>(
@@ -34,11 +35,22 @@ class WeatherScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(city.city),
-            forecast(),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  city.city,
+                  style: GoogleFonts.manrope(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                currentForecast(),
+              ],
+            ),
           ],
         ),
       ),

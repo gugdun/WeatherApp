@@ -18,7 +18,7 @@ class SearchInProgress extends SearchState {
 }
 
 class SearchDone extends SearchState {
-  final List<Coordinates> results;
+  final List<City> results;
 
   SearchDone({required this.results});
 }

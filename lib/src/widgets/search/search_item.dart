@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/src/cubit/app_cubit.dart';
-import 'package:weather_app/src/entities/coordinates.dart';
-import 'package:weather_app/src/widgets/add_button.dart';
-import 'package:weather_app/src/widgets/delete_button.dart';
-import 'package:weather_app/src/widgets/location.dart';
+import 'package:weather_app/src/entities/city.dart';
+import 'package:weather_app/src/widgets/search/add_button.dart';
+import 'package:weather_app/src/widgets/search/delete_button.dart';
+import 'package:weather_app/src/widgets/search/location.dart';
 
 class SearchItem extends StatelessWidget {
-  final Coordinates city;
+  final City city;
 
   const SearchItem({Key? key, required this.city}) : super(key: key);
 
@@ -15,7 +15,7 @@ class SearchItem extends StatelessWidget {
     return BlocBuilder<AppCubit, AppState>(
       builder: (context, state) {
         if (state is AppDefault) {
-          return state.pages.where((e) => e.compareTo(city) == 1).isNotEmpty
+          return state.cities.where((e) => e.compareTo(city) == 1).isNotEmpty
               ? DeleteButton(city: city)
               : AddButton(city: city);
         } else {

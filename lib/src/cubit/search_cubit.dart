@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/src/entities/coordinates.dart';
+import 'package:weather_app/src/entities/city.dart';
 import 'package:weather_app/src/services/geocoding_service.dart';
 
 part 'search_state.dart';
@@ -14,12 +14,10 @@ class SearchCubit extends Cubit<SearchState> {
     if (state is SearchInProgress) {
       await (state as SearchInProgress).future;
     }
-
     if (query == '') {
       emit(SearchInitial());
       return;
     }
-
     emit(SearchQueried(query: query));
   }
 

@@ -1,29 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:weather_app/src/entities/coordinates.dart';
+import 'package:weather_app/src/entities/city.dart';
 
 part 'app_state.dart';
 
 class AppCubit extends Cubit<AppState> {
   AppCubit() : super(AppInitial());
 
-  void addPage(Coordinates page) {
+  void addCity(City city) {
     if (state is AppDefault) {
-      var newPages = (state as AppDefault).pages;
-      newPages.add(page);
-      emit(AppDefault(pages: newPages));
+      var newCities = (state as AppDefault).cities;
+      newCities.add(city);
+      emit(AppDefault(cities: newCities));
     } else {
-      emit(AppDefault(pages: <Coordinates>[page]));
+      emit(AppDefault(cities: <City>[city]));
     }
   }
 
-  void removePage(Coordinates page) {
-    var newPages = (state as AppDefault).pages;
-    newPages.remove(newPages.firstWhere((e) => e.compareTo(page) == 1));
-    if (newPages.isEmpty) {
+  void removeCity(City city) {
+    var newCities = (state as AppDefault).cities;
+    newCities.remove(newCities.firstWhere((e) => e.compareTo(city) == 1));
+    if (newCities.isEmpty) {
       emit(AppInitial());
     } else {
-      emit(AppDefault(pages: newPages));
+      emit(AppDefault(cities: newCities));
     }
   }
 

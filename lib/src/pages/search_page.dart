@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/src/cubit/search_cubit.dart';
-import 'package:weather_app/src/widgets/cities/cities_list.dart';
+import 'package:weather_app/src/widgets/search/cities_list.dart';
 import 'package:weather_app/src/widgets/search/search_field.dart';
 import 'package:weather_app/src/widgets/search/search_list.dart';
 
-class CitiesScreen extends StatelessWidget {
-  const CitiesScreen({Key? key}) : super(key: key);
+class SearchPage extends StatelessWidget {
+  const SearchPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

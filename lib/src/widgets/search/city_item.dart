@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/src/entities/coordinates.dart';
-import 'package:weather_app/src/widgets/delete_button.dart';
-import 'package:weather_app/src/widgets/location.dart';
+import 'package:weather_app/src/entities/city.dart';
+import 'package:weather_app/src/widgets/search/delete_button.dart';
+import 'package:weather_app/src/widgets/search/location.dart';
 
 class CityItem extends StatelessWidget {
-  final Coordinates city;
+  final City city;
 
   const CityItem({Key? key, required this.city}) : super(key: key);
 

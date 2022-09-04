@@ -11,7 +11,7 @@ class SearchField extends StatelessWidget {
     return BlocBuilder<SearchCubit, SearchState>(
       builder: (context, state) {
         return Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(8),
           child: TextField(
             style: GoogleFonts.manrope(fontSize: 18),
             textInputAction: TextInputAction.search,

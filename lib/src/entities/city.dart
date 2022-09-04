@@ -1,11 +1,11 @@
-class Coordinates implements Comparable {
+class City implements Comparable {
   final String city;
   final String admin;
   final String country;
   final double latitude;
   final double longitude;
 
-  Coordinates({
+  City({
     required this.city,
     required this.admin,
     required this.country,
@@ -13,8 +13,8 @@ class Coordinates implements Comparable {
     required this.longitude,
   });
 
-  factory Coordinates.fromJson(Map<String, dynamic> json) {
-    return Coordinates(
+  factory City.fromJson(Map<String, dynamic> json) {
+    return City(
       city: json['name'],
       admin: json['admin1'],
       country: json['country'],
