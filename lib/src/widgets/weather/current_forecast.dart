@@ -18,7 +18,7 @@ class CurrentForecast extends StatelessWidget {
           future: context.read<ForecastCubit>().forecast,
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
-              return const Text('Loading...');
+              return const CircularProgressIndicator();
             } else {
               Forecast forecast = snapshot.data as Forecast;
               return Weather(weather: forecast.currentWeather);

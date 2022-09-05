@@ -13,19 +13,17 @@ class App extends StatelessWidget {
       home: Scaffold(
         body: SafeArea(
           child: BlocProvider<AppCubit>(
-            create: (context) => AppCubit(),
+            create: (context) {
+              var app = AppCubit();
+              app.loadApp();
+              return app;
+            },
             child: BlocBuilder<AppCubit, AppState>(
-              buildWhen: (previous, current) => current is AppInitial,
               builder: (context, state) {
-                return FutureBuilder(
-                  future: context.read<AppCubit>().loadApp(),
-                  builder: (context, snapshot) {
-                    if (snapshot.hasData) {
-                      return const AppPages();
-                    }
-                    return const Center(child: CircularProgressIndicator());
-                  },
-                );
+                if (state is AppLoaded) {
+                  return const AppPages();
+                }
+                return const Center(child: CircularProgressIndicator());
               },
             ),
           ),
