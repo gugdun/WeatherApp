@@ -18,21 +18,22 @@ class ForecastCubit extends Cubit<ForecastState> {
 
   Future<void> refresh() async {
     var prefs = await SharedPreferences.getInstance();
-    await prefs.remove('forecast_${city.city}');
+    await prefs.remove(jsonEncode(city.toJson()));
     var uuid = const Uuid();
     emit(ForecastInitial(uuid: uuid.v1()));
   }
 
   Future<Forecast> get forecast async {
+    var key = jsonEncode(city.toJson());
     var prefs = await SharedPreferences.getInstance();
-    if (prefs.containsKey('forecast_${city.city}')) {
-      var json = prefs.getString('forecast_${city.city}');
+    if (prefs.containsKey(key)) {
+      var json = prefs.getString(key);
       if (json != null) {
         return Forecast.fromJson(jsonDecode(json));
       }
     }
     var forecast = await forecastService.currentWeather(city);
-    await prefs.setString('forecast_${city.city}', jsonEncode(forecast));
+    await prefs.setString(key, jsonEncode(forecast));
     return forecast;
   }
 }

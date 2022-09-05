@@ -35,7 +35,7 @@ class AppCubit extends Cubit<AppState> {
     var newCities = (state as AppLoaded).cities.sublist(0);
     newCities.remove(newCities.firstWhere((e) => e.compareTo(city) == 1));
     await prefs.setString('cities', jsonEncode(newCities));
-    await prefs.remove('forecast_${city.city}');
+    await prefs.remove(jsonEncode(city.toJson()));
     emit(AppLoaded(cities: newCities));
   }
 }

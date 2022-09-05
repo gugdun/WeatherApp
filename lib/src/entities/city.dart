@@ -33,11 +33,11 @@ class City implements Comparable {
 
   @override
   int compareTo(other) {
-    if (city == other?.city &&
-        admin == other?.admin &&
-        country == other?.country &&
-        latitude == other?.latitude &&
-        longitude == other?.longitude) {
+    if (city == other.city &&
+        admin == other.admin &&
+        country == other.country &&
+        latitude == other.latitude &&
+        longitude == other.longitude) {
       return 1;
     } else {
       return 0;
